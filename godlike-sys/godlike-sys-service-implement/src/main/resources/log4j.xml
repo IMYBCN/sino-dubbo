@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH\:mm\:ss:SSS}---[%p]-[%c]%m%n"/>
+        </layout>
+    </appender>
+    <appender name="dailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Threshold" value="debug"></param>
+        <param name="File" value="../logs/dailyRollingFile.log"></param>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] {%c:%L}-%m%n"></param>
+        </layout>
+    </appender>
+    <category name="java.sql">
+        <priority value="debug"/>
+        <appender-ref ref="console"/>
+    </category>
+    <category name="com.ibatis">
+        <priority value="debug"/>
+        <appender-ref ref="console"/>
+    </category>
+    <category name="org.springframework">
+        <priority value="error"/>
+        <appender-ref ref="console"/>
+    </category>
+    <category name="org.mybatis.spring">
+        <priority value="error"/>
+        <appender-ref ref="console"/>
+    </category>
+    <category name="com.alibaba.druid">
+        <priority value="error"/>
+        <appender-ref ref="console"/>
+    </category>
+    <category name="com.alibaba.dubbo">
+        <priority value="error"/>
+        <appender-ref ref="console"/>
+    </category>
+    <category name="org.apache.zookeeper">
+        <priority value="error"/>
+        <appender-ref ref="console"/>
+    </category>
+    <category name="org.I0Itec.zkclient">
+        <priority value="error"/>
+        <appender-ref ref="console"/>
+    </category>
+
+    <category name="freemarker.cache">
+        <priority value="error"/>
+        <appender-ref ref="console"/>
+    </category>
+    <category name="com.sino">
+        <priority value="debug"/>
+        <appender-ref ref="console"/>
+    </category>
+    <category name="org.apache.commons.beanutils">
+        <level value="off"></level>
+    </category>
+    <root>
+        <priority value="debug" />
+    </root>
+</log4j:configuration>
+        <!-- ========================== 自定义输出格式说明================================ -->
+        <!-- %p 输出优先级，即TRACE,DEBUG，INFO，WARN，ERROR，FATAL,OFF -->
+        <!-- %r 输出自应用启动到输出该log信息耗费的毫秒数  -->
+        <!-- %c 输出所属的类目，通常就是所在类的全名 -->
+        <!-- %t 输出产生该日志事件的线程名 -->
+        <!-- %n 输出一个回车换行符，Windows平台为“/r/n”，Unix平台为“/n” -->
+        <!-- %d 输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy MMM dd HH:mm:ss,SSS}，输出类似：2002年10月18日 22：10：28，921  -->
+        <!-- %l 输出日志事件的发生位置，包括类目名、发生的线程，以及在代码中的行数。举例：Testlog4.main(TestLog4.java:10)  -->
+        <!-- ========================================================================== -->
+
+        <!-- ========================== 输出方式说明================================ -->
+        <!-- Log4j提供的appender有以下几种:  -->
+        <!-- org.apache.log4j.ConsoleAppender(控制台),  -->
+        <!-- org.apache.log4j.FileAppender(文件),  -->
+        <!-- org.apache.log4j.DailyRollingFileAppender(每天产生一个日志文件), -->
+        <!-- org.apache.log4j.RollingFileAppender(文件大小到达指定尺寸的时候产生一个新的文件),  -->
+        <!-- org.apache.log4j.WriterAppender(将日志信息以流格式发送到任意指定的地方)   -->
+        <!-- ========================================================================== -->

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sino.godlike.dao.mapper.CityPOMapper">
+    <update id="update" parameterType="com.sino.godlike.model.po.CityPo">
+        update city
+        <set>
+            <if test="cityId != null">
+                CITY_ID = #{cityId,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceId != null">
+                PROVINCE_ID = #{provinceId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                CODE = #{code,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where NAME = #{name,jdbcType=VARCHAR}
+    </update>
+
+
+    <select id="findall" resultType="com.sino.godlike.model.po.CityPo">
+        SELECT * FROM city
+    </select>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!--&lt;!&ndash;mybatis  sessionFactory配置&ndash;&gt;-->
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+    <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--<property name="mapperLocations" value="classpath*:com/sino/godlike/dao/impl/*.xml"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 扫包  &ndash;&gt;-->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+    <!--<property name="basePackage" value="com.sino.**.dao.mapper"/>-->
+    <!--</bean>-->
+
+
+    <!--mybatis  sessionFactory配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis.xml"></property>
+        <!--mapper文件的位置-->
+        <!--classpath：只会到你指定的class路径中查找找文件;-->
+        <!--classpath*：不仅包含class路径，还包括jar文件中(class路径)进行查找.-->
+        <property name="mapperLocations">
+            <list>
+                <value>classpath*:com/sino/**/dao/impl/*.xml</value>
+            </list>
+        </property>
+        <property name="typeAliasesPackage" value="com.sino.**.model"/>
+    </bean>
+    <!--扫包 扫描的是mapper接口类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.sino.**.dao.mapper"/>
+        <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+    </bean>
+</beans>

@@ -1,0 +1,28 @@
+<assembly
+        xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+    <id>release</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <!--应包含除去第三方依赖包和本工程的java类以外的所有-->
+        <fileSet>
+            <directory>${project.build.directory}/${project.build.finalName}</directory>
+            <includes>
+                <include>static/**</include>
+                <include>WEB-INF/lib/godlike-*.jar</include>
+                <include>WEB-INF/pages/**</include>
+                <include>WEB-INF/web.xml</include>
+                <include>WEB-INF/classes/**</include>
+                <include>META-INF</include>
+            </includes>
+            <excludes>
+                <exclude>WEB-INF/classes/com/**</exclude>
+            </excludes>
+            <outputDirectory>/${project.build.finalName}</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>
