@@ -96,35 +96,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--获取svn版本号-->
-            <plugin>
-                <groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
-                <artifactId>maven-svn-revision-number-plugin</artifactId>
-                <version>1.7</version>
-                <configuration>
-                    <verbose>true</verbose>
-                    <entries>
-                        <entry>
-                            <prefix>svn</prefix>
-                        </entry>
-                    </entries>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.tmatesoft.svnkit</groupId>
-                        <artifactId>svnkit</artifactId>
-                        <version>1.8.9</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -169,7 +140,7 @@
                             <descriptors>
                                 <descriptor>src/main/assembly/web_tar_all.xml</descriptor>
                             </descriptors>
-                            <finalName>${project.build.finalName}-${profiles.active}-all.svn${svn.revision}.${maven.build.timestamp}</finalName>
+                            <finalName>${project.build.finalName}-${profiles.active}-all.${maven.build.timestamp}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
@@ -185,7 +156,7 @@
                             <descriptors>
                                 <descriptor>src/main/assembly/web_tar_min.xml</descriptor>
                             </descriptors>
-                            <finalName>${project.build.finalName}-${profiles.active}-min.svn${svn.revision}.${maven.build.timestamp}</finalName>
+                            <finalName>${project.build.finalName}-${profiles.active}-min.${maven.build.timestamp}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
